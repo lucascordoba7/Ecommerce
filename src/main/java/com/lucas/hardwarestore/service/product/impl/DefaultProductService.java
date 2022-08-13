@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @Service(value = "productService")
 public class DefaultProductService implements ProductService {
+    @Resource(name = "productRepository")
     private ProductRepository productRepository;
 
     @Override
@@ -37,7 +38,6 @@ public class DefaultProductService implements ProductService {
         return productRepository;
     }
 
-    @Resource(name = "productRepository")
     public void setProductRepository(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
