@@ -20,7 +20,7 @@ public class DefaultProductService implements ProductService {
     }
 
     @Override
-    public Optional<ProductModel> findById(Long id) {
+    public Optional<ProductModel> findById(long id) {
         return getProductRepository().findById(id);
     }
 
