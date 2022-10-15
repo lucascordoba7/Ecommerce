@@ -1,15 +1,14 @@
-package com.lucas.hardwarestore.model;
+package com.lucas.hardwarestore.model.product;
 
+import com.lucas.hardwarestore.model.order.OrderEntryModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Data
@@ -23,4 +22,6 @@ public class ProductModel {
     private String name;
     private String brand;
     private BigDecimal price;
+    @OneToMany(mappedBy = "product")
+    private List<OrderEntryModel> entries;
 }
