@@ -1,7 +1,7 @@
 package com.lucas.hardwarestore.service.product.impl;
 
 import com.lucas.hardwarestore.dao.ProductRepository;
-import com.lucas.hardwarestore.model.ProductModel;
+import com.lucas.hardwarestore.model.product.ProductModel;
 import com.lucas.hardwarestore.service.product.ProductService;
 import org.springframework.stereotype.Service;
 
