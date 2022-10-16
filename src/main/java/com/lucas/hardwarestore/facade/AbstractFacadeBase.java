@@ -16,12 +16,12 @@ public abstract class AbstractFacadeBase<RequestType, ResponseType, ModelType>
     private final Mapper<ModelType, ResponseType> responseMapper;
 
     @Override
-    public final List<ResponseType> findAll() {
+    public List<ResponseType> findAll() {
         return responseMapper.mapAllFrom(service.findAll());
     }
 
     @Override
-    public final Optional<ResponseType> findById(long id) {
+    public Optional<ResponseType> findById(long id) {
         var model = service.findById(id);
         if (model.isEmpty())
             return Optional.empty();
@@ -29,7 +29,7 @@ public abstract class AbstractFacadeBase<RequestType, ResponseType, ModelType>
     }
 
     @Override
-    public final ResponseType create(RequestType request) {
+    public ResponseType create(RequestType request) {
         return responseMapper
                 .mapFrom(
                         service.create(
@@ -39,7 +39,7 @@ public abstract class AbstractFacadeBase<RequestType, ResponseType, ModelType>
     }
 
     @Override
-    public final void delete(long id) {
+    public void delete(long id) {
         service.delete(id);
     }
 }
