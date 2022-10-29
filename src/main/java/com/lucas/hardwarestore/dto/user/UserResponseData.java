@@ -3,6 +3,8 @@ package com.lucas.hardwarestore.dto.user;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Builder
 @Data
 public class UserResponseData {
@@ -11,4 +13,5 @@ public class UserResponseData {
     private String password;
     private String email;
     private String phone;
+    private List<RoleResponseData> roles;
 }

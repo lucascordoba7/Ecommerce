@@ -42,4 +42,16 @@ public abstract class AbstractFacadeBase<RequestType, ResponseType, ModelType>
     public void delete(long id) {
         service.delete(id);
     }
+
+    public GenericService<ModelType> getService() {
+        return service;
+    }
+
+    public Mapper<RequestType, ModelType> getRequestMapper() {
+        return requestMapper;
+    }
+
+    public Mapper<ModelType, ResponseType> getResponseMapper() {
+        return responseMapper;
+    }
 }
