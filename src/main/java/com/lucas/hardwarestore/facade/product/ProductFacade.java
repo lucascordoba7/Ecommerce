@@ -1,7 +1,8 @@
-package com.lucas.hardwarestore.facade;
+package com.lucas.hardwarestore.facade.product;
 
 import com.lucas.hardwarestore.dto.product.ProductRequestData;
 import com.lucas.hardwarestore.dto.product.ProductResponseData;
+import com.lucas.hardwarestore.facade.AbstractFacadeBase;
 import com.lucas.hardwarestore.facade.mappers.Mapper;
 import com.lucas.hardwarestore.model.product.ProductModel;
 import com.lucas.hardwarestore.service.GenericService;

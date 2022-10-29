@@ -33,4 +33,8 @@ public abstract class GenericController<T, D> {
         facade.delete(id);
         return ResponseEntity.ok().build();
     }
+
+    public Facade<T, D> getFacade() {
+        return facade;
+    }
 }
