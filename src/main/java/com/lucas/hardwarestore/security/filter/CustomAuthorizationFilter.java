@@ -34,8 +34,11 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
         } else {
             final String authorizationHeader = request.getHeader(AUTHORIZATION);
-            if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            if (authorizationHeader != null) {
                try {
+                   if (!authorizationHeader.startsWith("Bearer ")){
+                       throw new IllegalArgumentException("Token should start with 'Bearer '");
+                   }
                    final String token = authorizationHeader.substring("Bearer ".length());
                    final Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
                    final JWTVerifier verifier = JWT.require(algorithm).build();

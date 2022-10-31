@@ -15,9 +15,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -45,6 +44,13 @@ public class DefaultUserService implements UserService, UserDetailsService {
     @Override
     public UserModel create(UserModel userModel) {
         userModel.setPassword(passwordEncoder.encode(userModel.getPassword()));
+        if (userModel.getRoles() != null) {
+            userModel.setRoles(
+                    userModel.getRoles().stream()
+                            .map(r -> roleRepository.findByName(r.getName()).orElse(null))
+                            .filter(Objects::nonNull)
+                            .collect(Collectors.toSet()));
+        }
         return getUserRepository().save(userModel);
     }
 
