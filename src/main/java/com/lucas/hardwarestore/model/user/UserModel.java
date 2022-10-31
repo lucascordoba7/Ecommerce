@@ -24,8 +24,8 @@ public class UserModel {
     private String password;
     private String email;
     private String phone;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<OrderModel> orders;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Collection<RoleModel> roles;
 }

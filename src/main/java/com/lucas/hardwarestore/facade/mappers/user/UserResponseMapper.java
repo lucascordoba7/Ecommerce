@@ -18,7 +18,6 @@ public class UserResponseMapper implements Mapper<UserModel, UserResponseData> {
         return UserResponseData.builder()
                 .id(source.getId())
                 .username(source.getUsername())
-                .password(source.getPassword())
                 .email(source.getEmail())
                 .phone(source.getPhone())
                 .roles(roleResponseMapper.mapAllFrom((List<RoleModel>) source.getRoles()))
