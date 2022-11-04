@@ -6,6 +6,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,11 +35,8 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
         } else {
             final String authorizationHeader = request.getHeader(AUTHORIZATION);
-            if (authorizationHeader != null) {
+            if (StringUtils.isNotEmpty(authorizationHeader)) {
                try {
-                   if (!authorizationHeader.startsWith("Bearer ")){
-                       throw new IllegalArgumentException("Token should start with 'Bearer '");
-                   }
                    final String token = authorizationHeader.substring("Bearer ".length());
                    final Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
                    final JWTVerifier verifier = JWT.require(algorithm).build();
