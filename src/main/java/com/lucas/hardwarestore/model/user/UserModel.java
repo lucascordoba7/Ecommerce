@@ -1,6 +1,6 @@
 package com.lucas.hardwarestore.model.user;
 
-import com.lucas.hardwarestore.model.order.OrderModel;
+import com.lucas.hardwarestore.model.cart.CartModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,7 +25,7 @@ public class UserModel {
     private String email;
     private String phone;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<OrderModel> orders;
+    private List<CartModel> orders;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Collection<RoleModel> roles;
 }

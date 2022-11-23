@@ -1,4 +1,4 @@
-package com.lucas.hardwarestore.model.order;
+package com.lucas.hardwarestore.model.cart;
 
 import com.lucas.hardwarestore.model.user.UserModel;
 import lombok.AllArgsConstructor;
@@ -21,11 +21,10 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderModel {
+public class CartModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String code;
     private Date created;
     private Date modified;
     private String status;
@@ -34,5 +33,5 @@ public class OrderModel {
     @ManyToOne
     private UserModel user;
     @OneToMany(mappedBy = "order")
-    private List<OrderEntryModel> entries;
+    private List<CartEntryModel> entries;
 }

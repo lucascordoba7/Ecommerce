@@ -1,4 +1,4 @@
-package com.lucas.hardwarestore.model.order;
+package com.lucas.hardwarestore.model.cart;
 
 import com.lucas.hardwarestore.model.product.ProductModel;
 import lombok.AllArgsConstructor;
@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderEntryModel {
+public class CartEntryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -23,5 +23,5 @@ public class OrderEntryModel {
     @ManyToOne
     private ProductModel product;
     @ManyToOne
-    private OrderModel order;
+    private CartModel order;
 }

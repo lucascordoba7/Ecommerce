@@ -1,6 +1,6 @@
 package com.lucas.hardwarestore.model.product;
 
-import com.lucas.hardwarestore.model.order.OrderEntryModel;
+import com.lucas.hardwarestore.model.cart.CartEntryModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,5 +23,5 @@ public class ProductModel {
     private String brand;
     private BigDecimal price;
     @OneToMany(mappedBy = "product")
-    private List<OrderEntryModel> entries;
+    private List<CartEntryModel> entries;
 }
