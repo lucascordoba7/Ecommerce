@@ -22,6 +22,9 @@ public class UserFacade extends AbstractFacadeBase<UserRequestData, UserResponse
     public UserResponseData findUserByUsername(final String username) {
         return getResponseMapper().mapFrom(userService.getUserByUsername(username));
     }
+    public UserResponseData getCurrentUser(){
+        return getResponseMapper().mapFrom(userService.getCurrentUser());
+    }
 
     public void addRoleToUser(final String username, final String roleName){
         userService.addRoleToUser(username, roleName);

@@ -1,11 +1,13 @@
-package com.lucas.hardwarestore.model.order;
+package com.lucas.hardwarestore.model.cart;
 
 import com.lucas.hardwarestore.model.user.UserModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,15 +19,15 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderModel {
+public class CartModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String code;
     private Date created;
     private Date modified;
     private String status;
@@ -33,6 +35,6 @@ public class OrderModel {
     private BigDecimal total;
     @ManyToOne
     private UserModel user;
-    @OneToMany(mappedBy = "order")
-    private List<OrderEntryModel> entries;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<CartEntryModel> entries;
 }

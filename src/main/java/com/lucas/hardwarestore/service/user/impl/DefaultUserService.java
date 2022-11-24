@@ -6,7 +6,9 @@ import com.lucas.hardwarestore.model.user.RoleModel;
 import com.lucas.hardwarestore.model.user.UserModel;
 import com.lucas.hardwarestore.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -71,6 +73,13 @@ public class DefaultUserService implements UserService, UserDetailsService {
     @Override
     public UserModel getUserByUsername(String username) {
         return getUserRepository().findByUsername(username).orElse(null);
+    }
+
+    @Override
+    public UserModel getCurrentUser() {
+        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        final String username = authentication.getName();
+        return getUserByUsername(username);
     }
 
     public UserRepository getUserRepository() {
