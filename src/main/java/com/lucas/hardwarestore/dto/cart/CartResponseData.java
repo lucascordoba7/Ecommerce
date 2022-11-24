@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @Builder
 public class CartResponseData {
-    private String code;
+    private Long id;
     private Date created;
     private Date modified;
     private String status;

@@ -16,6 +16,7 @@ public class CartEntryResponseMapper implements Mapper<CartEntryModel, CartEntry
     @Override
     public CartEntryResponseData mapFrom(CartEntryModel source) {
         return CartEntryResponseData.builder()
+                .id(source.getId())
                 .quantity(source.getQuantity())
                 .total(source.getTotal())
                 .product(productResponseMapper.mapFrom(source.getProduct()))

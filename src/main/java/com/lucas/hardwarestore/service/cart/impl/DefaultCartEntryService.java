@@ -29,6 +29,10 @@ public class DefaultCartEntryService implements CartEntryService {
     public CartEntryModel create(CartEntryModel model) {
         return getCartEntryRepository().save(model);
     }
+    @Override
+    public CartEntryModel save(CartEntryModel model) {
+        return getCartEntryRepository().save(model);
+    }
 
     @Override
     public void delete(long id) {

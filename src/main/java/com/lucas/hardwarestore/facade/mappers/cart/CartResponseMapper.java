@@ -18,6 +18,7 @@ public class CartResponseMapper implements Mapper<CartModel, CartResponseData> {
     @Override
     public CartResponseData mapFrom(CartModel source) {
         return CartResponseData.builder()
+                .id(source.getId())
                 .created(source.getCreated())
                 .modified(source.getModified())
                 .status(source.getStatus())
