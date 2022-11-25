@@ -26,18 +26,18 @@ public class DefaultCalculationService implements CalculationService {
     public void recalculate() {
         final CartModel cart = commerceService.getCurrentCart();
         BigDecimal total = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
-        BigDecimal subtotal = BigDecimal.ZERO;
+        BigDecimal subtotal = BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP);
 
         for (final CartEntryModel entry : cart.getEntries()) {
-            final BigDecimal entryTotal = BigDecimal.valueOf(entry.getProduct().getPrice().doubleValue() * entry.getQuantity()).setScale(2, RoundingMode.HALF_UP);
+            final BigDecimal entryTotal = BigDecimal.valueOf(entry.getProduct().getPrice().doubleValue() * entry.getQuantity());
             entry.setTotal(entryTotal);
             cartEntryService.save(entry);
 
             total = total.add(entryTotal);
             subtotal = subtotal.add(entryTotal);
         }
-        cart.setTotal(total.setScale(2, RoundingMode.HALF_UP));
-        cart.setSubtotal(subtotal.setScale(2, RoundingMode.HALF_UP));
+        cart.setTotal(total);
+        cart.setSubtotal(subtotal);
         cartService.save(cart);
     }
 }
