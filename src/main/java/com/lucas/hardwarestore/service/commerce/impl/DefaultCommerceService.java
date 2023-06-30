@@ -60,7 +60,10 @@ public class DefaultCommerceService implements CommerceService {
                 cart.setEntries(entries);
             }
         }
-        cartEntryService.save(entry);
+        if (entry.getQuantity() <= 0) {
+            cart.getEntries().remove(entry);
+            cartEntryService.delete(entry.getId());
+        }
         cartService.save(cart);
     }
 
@@ -69,9 +72,6 @@ public class DefaultCommerceService implements CommerceService {
         final UserModel currentUser = userService.getCurrentUser();
         final List<CartModel> carts = cartService.getCartsForUser(currentUser);
         final Optional<CartModel> lastModified = carts.stream().min(Comparator.comparing(c -> c.getModified().compareTo(new Date())));
-        if (lastModified.isEmpty()) {
-            return cartService.create(new CartModel());
-        }
-        return lastModified.get();
+        return lastModified.orElseGet(() -> cartService.create(new CartModel()));
     }
 }
