@@ -1,5 +1,5 @@
 package com.lucas.hardwarestore.facade.commerce;
 
 public interface CommerceFacade {
-    void addToCart(Long productId, Long quantity);
+    void addToCart(Long productId, Long quantity, boolean replaceQuantity);
 }

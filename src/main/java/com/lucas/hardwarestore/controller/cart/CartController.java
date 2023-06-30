@@ -4,13 +4,7 @@ import com.lucas.hardwarestore.facade.cart.CartFacade;
 import com.lucas.hardwarestore.facade.commerce.CommerceFacade;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -23,10 +17,16 @@ public class CartController {
     @Resource
     private CommerceFacade commerceFacade;
 
-    @PostMapping("/addToCart")
+    @PatchMapping("/addToCart")
     ResponseEntity<?> addToCart(@RequestParam final Long productId,
                                 @RequestParam final Long quantity){
-        commerceFacade.addToCart(productId, quantity);
+        commerceFacade.addToCart(productId, quantity, false);
+        return ResponseEntity.ok(cartFacade.getCurrentCart());
+    }
+    @PutMapping("/addToCart")
+    ResponseEntity<?> addToCartAndReplace(@RequestParam final Long productId,
+                                @RequestParam final Long quantity){
+        commerceFacade.addToCart(productId, quantity, true);
         return ResponseEntity.ok(cartFacade.getCurrentCart());
     }
     @GetMapping("")

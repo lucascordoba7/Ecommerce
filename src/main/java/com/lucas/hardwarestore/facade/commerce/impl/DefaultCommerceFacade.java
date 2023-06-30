@@ -15,8 +15,8 @@ public class DefaultCommerceFacade implements CommerceFacade {
     private CalculationService calculationService;
 
     @Override
-    public void addToCart(Long productId, Long quantity) {
-        commerceService.addToCart(productId, quantity);
+    public void addToCart(final Long productId, final Long quantity, final boolean replaceQuantity) {
+        commerceService.addToCart(productId, quantity, replaceQuantity);
         calculationService.recalculate();
     }
 }

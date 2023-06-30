@@ -33,7 +33,7 @@ public class DefaultCommerceService implements CommerceService {
     private ProductService productService;
 
     @Override
-    public void addToCart(final Long productId, final Long quantity) {
+    public void addToCart(final Long productId, final Long quantity, final boolean replaceQuantity) {
         final CartModel cart = getCurrentCart();
         final Optional<CartEntryModel> existingEntry = cart.getEntries().stream()
                 .filter(e -> e.getProduct().getId().equals(productId))
@@ -43,7 +43,7 @@ public class DefaultCommerceService implements CommerceService {
 
         if (existingEntry.isPresent()) {
             entry = existingEntry.get();
-            entry.setQuantity(entry.getQuantity() + quantity);
+            entry.setQuantity(replaceQuantity ? quantity : entry.getQuantity() + quantity);
         } else {
             entry = new CartEntryModel();
             final ProductModel product = productService.findById(productId).orElseThrow(IllegalStateException::new);
