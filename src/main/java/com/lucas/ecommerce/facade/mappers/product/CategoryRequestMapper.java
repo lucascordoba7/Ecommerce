@@ -10,7 +10,6 @@ public class CategoryRequestMapper implements Mapper<CategoryRequestData, Catego
     @Override
     public CategoryModel mapFrom(CategoryRequestData source) {
         return CategoryModel.builder()
-                .id(source.getId())
                 .name(source.getName())
                 .build();
     }

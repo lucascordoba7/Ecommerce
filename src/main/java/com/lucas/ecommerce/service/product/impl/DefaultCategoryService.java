@@ -30,6 +30,7 @@ public class DefaultCategoryService implements CategoryService {
         return getCategoryRepository().save(model);
     }
 
+
     @Override
     public void delete(long id) {
         getCategoryRepository().deleteById(id);
