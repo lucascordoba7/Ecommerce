@@ -5,23 +5,18 @@ import com.lucas.ecommerce.dto.user.RoleResponseData;
 import com.lucas.ecommerce.facade.Facade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
 
+@Getter
 @Tag(name = "Roles", description = "Role controllers")
-@RestControllerAdvice
+@RestController
 @RequestMapping(value = "/api/role")
 public class RoleController {
     @Resource
@@ -51,15 +46,11 @@ public class RoleController {
     }
 
     //DELETE
-    @Operation(summary = "Delete category", description = "Deletes a role for a given id")
+    @Operation(summary = "Delete role", description = "Deletes a role for a given id")
     @DeleteMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     void delete(@PathVariable final Long id) {
         getFacade().delete(id);
-    }
-
-    public Facade<RoleRequestData, RoleResponseData> getFacade() {
-        return facade;
     }
 
     public void setFacade(Facade<RoleRequestData, RoleResponseData> facade) {
