@@ -1,11 +1,13 @@
 package com.lucas.ecommerce.dto.user;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class UserRequestData {
     private String username;

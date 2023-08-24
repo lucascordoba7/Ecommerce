@@ -1,15 +1,18 @@
 package com.lucas.ecommerce.dto.product;
 
-import lombok.Builder;
-import lombok.Data;
+import com.lucas.ecommerce.dto.IdRequestData;
+import lombok.*;
 
 import java.math.BigDecimal;
-
-@Data
+import java.util.List;
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class ProductRequestData {
     private String name;
     private String brand;
     private BigDecimal price;
-    private CategoryRequestData category;
+    private List<IdRequestData> categories;
 }

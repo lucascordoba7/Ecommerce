@@ -53,7 +53,4 @@ public class CategoryController {
         getFacade().delete(id);
     }
 
-    public void setFacade(Facade<CategoryRequestData, CategoryResponseData> facade) {
-        this.facade = facade;
-    }
 }

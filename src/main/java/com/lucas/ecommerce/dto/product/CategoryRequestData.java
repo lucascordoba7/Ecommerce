@@ -1,9 +1,11 @@
 package com.lucas.ecommerce.dto.product;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class CategoryRequestData {
     private String name;

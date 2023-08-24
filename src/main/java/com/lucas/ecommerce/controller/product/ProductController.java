@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Getter
@@ -18,6 +19,8 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/product")
 public class ProductController {
+
+    @Resource
     private Facade<ProductRequestData, ProductResponseData> facade;
 
     //GET
