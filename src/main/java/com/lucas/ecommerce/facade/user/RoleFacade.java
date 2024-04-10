@@ -18,4 +18,9 @@ public class RoleFacade extends AbstractFacadeBase<RoleRequestData, RoleResponse
     public RoleResponseData findRoleByName(final String roleName){
         return getResponseMapper().mapFrom(roleService.findRoleByName(roleName));
     }
+
+    @Override
+    protected void setId(RoleModel roleModel, long id) {
+        roleModel.setId(id);
+    }
 }

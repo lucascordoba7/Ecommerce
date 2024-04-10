@@ -53,4 +53,12 @@ public class CategoryController {
         getFacade().delete(id);
     }
 
+    //PUT
+    @Operation(summary = "Updates category", description = "Updates a category for a given id")
+    @PutMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<CategoryResponseData> update(@PathVariable final Long id, @RequestBody CategoryRequestData categoryRequestData) {
+        return ResponseEntity.ok(getFacade().update(id, categoryRequestData));
+    }
+
 }

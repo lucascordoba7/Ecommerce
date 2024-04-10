@@ -54,6 +54,14 @@ public class UserController {
         getUserFacade().delete(id);
     }
 
+    //PUT
+    @Operation(summary = "Updates user", description = "Updates an user for a given id")
+    @PutMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<UserResponseData> update(@PathVariable final Long id, @RequestBody UserRequestData userRequestData) {
+        return ResponseEntity.ok(getUserFacade().update(id, userRequestData));
+    }
+
     @Operation(summary = "Find user by username", description = "Finds the user for a given username")
     @GetMapping(value = "/username/{username}")
     public ResponseEntity<UserResponseData> getUserByUsername(@PathVariable final String username) {

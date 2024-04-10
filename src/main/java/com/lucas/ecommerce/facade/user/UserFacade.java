@@ -29,4 +29,9 @@ public class UserFacade extends AbstractFacadeBase<UserRequestData, UserResponse
     public void addRoleToUser(final String username, final String roleName){
         userService.addRoleToUser(username, roleName);
     }
+
+    @Override
+    protected void setId(UserModel userModel, long id) {
+        userModel.setId(id);
+    }
 }

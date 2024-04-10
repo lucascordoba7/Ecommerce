@@ -20,7 +20,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 public class RoleModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true, nullable = false)
     private String name;

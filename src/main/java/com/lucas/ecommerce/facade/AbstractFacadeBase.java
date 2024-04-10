@@ -39,6 +39,15 @@ public abstract class AbstractFacadeBase<RequestType, ResponseType, ModelType>
     }
 
     @Override
+    public ResponseType update(final long id, final RequestType request) {
+        final ModelType modelType = requestMapper.mapFrom(request);
+        setId(modelType, id);
+        return responseMapper.mapFrom(service.create(modelType));
+    }
+
+    protected abstract void setId(ModelType modelType, long id);
+
+    @Override
     public void delete(long id) {
         service.delete(id);
     }

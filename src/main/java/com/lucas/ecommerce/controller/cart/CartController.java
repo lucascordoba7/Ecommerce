@@ -1,10 +1,12 @@
 package com.lucas.ecommerce.controller.cart;
 
+import com.lucas.ecommerce.dto.cart.CartRequestData;
 import com.lucas.ecommerce.dto.cart.CartResponseData;
 import com.lucas.ecommerce.facade.cart.CartFacade;
 import com.lucas.ecommerce.facade.commerce.CommerceFacade;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,5 +67,13 @@ public class CartController {
     ResponseEntity<?> delete(@PathVariable final Long id) {
         cartFacade.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    //PUT
+    @Operation(summary = "Updates cart", description = "Updates a cart for a given id")
+    @PutMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<CartResponseData> update(@PathVariable final Long id, @RequestBody CartRequestData cartRequestData) {
+        return ResponseEntity.ok(cartFacade.update(id, cartRequestData));
     }
 }
