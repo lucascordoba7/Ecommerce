@@ -54,6 +54,14 @@ public class ProductController {
         getFacade().delete(id);
     }
 
+    //PUT
+    @Operation(summary = "Updates product", description = "Updates a product for a given id")
+    @PutMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<ProductResponseData> update(@PathVariable final Long id, @RequestBody ProductRequestData productRequestData) {
+        return ResponseEntity.ok(getFacade().update(id, productRequestData));
+    }
+
     public void setFacade(Facade<ProductRequestData, ProductResponseData> facade) {
         this.facade = facade;
     }

@@ -11,5 +11,7 @@ public interface Facade<T, D> {
 
     D create(T request);
 
+    D update(long id, T request);
+
     void delete(long id);
 }

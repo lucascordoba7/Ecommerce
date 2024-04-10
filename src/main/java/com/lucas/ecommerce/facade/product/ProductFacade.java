@@ -17,4 +17,9 @@ public class ProductFacade extends AbstractFacadeBase<ProductRequestData, Produc
 
         super(service, requestMapper, responseMapper);
     }
+
+    @Override
+    protected void setId(ProductModel productModel, long id) {
+        productModel.setId(id);
+    }
 }

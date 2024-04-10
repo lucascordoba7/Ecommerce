@@ -23,4 +23,9 @@ public class CartFacade extends AbstractFacadeBase<CartRequestData, CartResponse
     public CartResponseData getCurrentCart() {
         return getResponseMapper().mapFrom(commerceService.getCurrentCart());
     }
+
+    @Override
+    protected void setId(CartModel cartModel, long id) {
+        cartModel.setId(id);
+    }
 }

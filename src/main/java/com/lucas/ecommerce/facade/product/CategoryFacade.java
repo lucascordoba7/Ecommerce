@@ -13,4 +13,9 @@ public class CategoryFacade extends AbstractFacadeBase<CategoryRequestData, Cate
     public CategoryFacade(GenericService<CategoryModel> service, Mapper<CategoryRequestData, CategoryModel> requestMapper, Mapper<CategoryModel, CategoryResponseData> responseMapper) {
         super(service, requestMapper, responseMapper);
     }
+
+    @Override
+    protected void setId(CategoryModel categoryModel, long id) {
+        categoryModel.setId(id);
+    }
 }

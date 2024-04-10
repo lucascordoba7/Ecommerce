@@ -53,6 +53,14 @@ public class RoleController {
         getFacade().delete(id);
     }
 
+    //PUT
+    @Operation(summary = "Updates role", description = "Updates a role for a given id")
+    @PutMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<RoleResponseData> update(@PathVariable final Long id, @RequestBody RoleRequestData roleRequestData) {
+        return ResponseEntity.ok(getFacade().update(id, roleRequestData));
+    }
+
     public void setFacade(Facade<RoleRequestData, RoleResponseData> facade) {
         this.facade = facade;
     }
